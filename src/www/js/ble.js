@@ -44,12 +44,12 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
     var fieldId = 'fieldcontain-ble-1';
 
     var inputValue = _.template(
-        '<div>' +
+        '<div id="ble-data">' +
             '<div class="ble-value">' +
                 '<input type="text" ' +
                        'id="ble-value"' +
                        'value="<%= value %>" ' +
-                       'data-ble-value="<%= dtree %>" ' +
+                       'data-ble-value="<%= ble %>" ' +
                        'readonly >' +
             '</div>' +
             '<div class="ble-delete">' +
@@ -66,7 +66,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
 
         field = {
             id: fieldId,
-            label: 'Bluetooth'
+            label: 'Bluetooth weather data'
         };
         field.val = bleData;
 
@@ -113,16 +113,31 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
     $(document).on('vclick', '.annotate-ble', function(event) {
         event.stopPropagation();
         event.preventDefault();
-        console.log('annotate worked');
-        //asAForm = false;
+        var html, label;
+        var fieldcontain = $(event.target).closest('.fieldcontain').get(0);
+        var $fieldcontain = $(fieldcontain);
 
         if(cordova && cordova.plugins && cordova.plugins.cobwebbleplugin){
             console.log('cordova plugin exists');
             utils.showPageLoadingMsg('The mobile is connecting to the weather station!');
             var addPropertFromCordova = function(result){
                 $.mobile.loading('hide');
-                bleData = JSON.stringify(result);
-                console.log(result);
+                bleData = result;
+
+                label = $fieldcontain
+                            .find('label[for="' + fieldcontain.id + '"]')
+                            .text();
+
+                html = inputValue({
+                    label: bleData.label,
+                    value: result,
+                    ble: bleData
+                });
+
+                $("#ble-data").remove();
+                $(html)
+                    .insertBefore('#'+fieldcontain.id+' .button-ble')
+                    .trigger('create');
             };
 
             var addPropertFromCordovaError = function(error){
