@@ -127,7 +127,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
                 console.log(error);
             };
 
-            cordova.plugins.cobwebbleplugin.pollBLEData('', addPropertFromCordova, addPropertFromCordovaError);
+            cordova.plugins.cobwebbleplugin.testArrayBLEData('', addPropertFromCordova, addPropertFromCordovaError);
         }
 
         return false;
