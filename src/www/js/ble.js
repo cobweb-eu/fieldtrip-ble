@@ -117,7 +117,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
         console.log('annotate worked');
         //asAForm = false;
 
-        if(cordova && cordova.plugins && cordova.plugins.COBWEBBLEPlugin){
+        if(cordova && cordova.plugins && cordova.plugins.cobwebbleplugin){
             console.log('cordova plugin exists');
             var addPropertFromCordova = function(result){
                 console.log(result);
@@ -127,7 +127,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
                 console.log(error);
             };
 
-            //cordova.plugins.COBWEBBLEPlugin.lineOfSight('', addPropertFromCordova, addPropertFromCordovaError);
+            cordova.plugins.cobwebbleplugin.btRead('', addPropertFromCordova, addPropertFromCordovaError);
         }
 
         return false;
