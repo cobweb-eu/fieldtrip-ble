@@ -35,8 +35,7 @@ DAMAGE.
 /* global cordova */
 
 define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, widgets) { // jshint ignore:line
-    var dgroup, dtype;
-    //var asAForm = false; // Flag to ignore the records.EVT_EDIT_ANNOTATION event
+    var bleData;
 
     var onFinishDtree;
 
@@ -69,7 +68,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
             id: fieldId,
             label: 'Bluetooth'
         };
-        field.val = "";
+        field.val = bleData;
 
         annotation.record.properties.fields.push(field);
     };
@@ -119,7 +118,10 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
 
         if(cordova && cordova.plugins && cordova.plugins.cobwebbleplugin){
             console.log('cordova plugin exists');
+            utils.showPageLoadingMsg('The mobile is connecting to the weather station!');
             var addPropertFromCordova = function(result){
+                $.mobile.loading('hide');
+                bleData = JSON.stringify(result);
                 console.log(result);
             };
 
@@ -127,7 +129,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
                 console.log(error);
             };
 
-            cordova.plugins.cobwebbleplugin.testArrayBLEData('', addPropertFromCordova, addPropertFromCordovaError);
+            cordova.plugins.cobwebbleplugin.testArrayBLEData(addPropertFromCordova, addPropertFromCordovaError);
         }
 
         return false;
@@ -201,5 +203,5 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
     // listen on any page with class sync-page
     $(document).on(records.EVT_EDIT_ANNOTATION, addRecordBLE);
 
-    $('head').prepend('<link rel="stylesheet" href="plugins/ble/css/style.css" type="text/css" />');
+    //$('head').prepend('<link rel="stylesheet" href="plugins/ble/css/style.css" type="text/css" />');
 });
