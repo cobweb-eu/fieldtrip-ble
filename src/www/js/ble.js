@@ -127,7 +127,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
                 console.log(error);
             };
 
-            cordova.plugins.cobwebbleplugin.btRead('', addPropertFromCordova, addPropertFromCordovaError);
+            cordova.plugins.cobwebbleplugin.pollBLEData('', addPropertFromCordova, addPropertFromCordovaError);
         }
 
         return false;
