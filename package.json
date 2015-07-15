@@ -1,0 +1,35 @@
+{
+  "name": "fieldtrip-ble",
+  "version": "0.0.1",
+  "description": "A fieldtrip plugin for communicating with bluetooth low energy devices",
+  "main": "src/www/js/ble.js",
+  "scripts": {
+    "lint": "node_modules/jshint/bin/jshint src/www/js/**.js",
+    "release": "npm run lint && node_modules/release-it/bin/release.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cobweb-eu/fieldtrip-ble.git"
+  },
+  "keywords": [
+    "fieldtrip",
+    "cobweb",
+    "bluetooth"
+  ],
+  "authors": [
+    "P. Terzis, R. Gamez"
+  ],
+  "license": "BSD",
+  "dependencies": {
+    "jquery": "^1.11.2"
+  },
+  "devDependencies": {
+    "jshint": "2.5.3",
+    "release-it": "0.0.15"
+  },
+  "bugs": {
+    "url": "https://github.com/cobweb-eu/fieldtrip-ble/issues"
+  },
+  "homepage": "https://github.com/cobweb-eu/fieldtrip-ble"
+}
