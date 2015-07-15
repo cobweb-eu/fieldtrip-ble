@@ -32,6 +32,7 @@ DAMAGE.
 'use strict';
 
 /* global _ */
+/* global cordova */
 
 define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, widgets) { // jshint ignore:line
     var dgroup, dtype;
@@ -113,9 +114,11 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
     $(document).on('vclick', '.annotate-ble', function(event) {
         event.stopPropagation();
         event.preventDefault();
-        asAForm = false;
+        console.log('annotate worked');
+        //asAForm = false;
 
         if(cordova && cordova.plugins && cordova.plugins.COBWEBBLEPlugin){
+            console.log('cordova plugin exists');
             var addPropertFromCordova = function(result){
                 console.log(result);
             };
@@ -124,7 +127,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
                 console.log(error);
             };
 
-            cordova.plugins.COBWEBBLEPlugin.lineOfSight('', addPropertFromCordova, addPropertFromCordovaError);
+            //cordova.plugins.COBWEBBLEPlugin.lineOfSight('', addPropertFromCordova, addPropertFromCordovaError);
         }
 
         return false;
@@ -153,7 +156,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
             $.each($('.button-ble', element), function(index, input) {
 
                 var btn = '<a class="annotate-ble" data-role="button" href="#">' +
-                              'Add ' +
+                              'Retrieve ' +
                           '</a>';
 
                 $(input)
