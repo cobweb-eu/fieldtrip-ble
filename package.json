@@ -1,6 +1,6 @@
 {
   "name": "fieldtrip-ble",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "A fieldtrip plugin for communicating with bluetooth low energy devices",
   "main": "src/www/js/ble.js",
   "scripts": {
