@@ -73,34 +73,6 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
         annotation.record.properties.fields.push(field);
     };
 
-    /**
-     * Implements the records.processEditor interface
-     * @param editorName name of the editor
-     * @param html html content of the editor
-     * @param group from records.EDITOR_GROUP
-     * @param online boolean value if the processing is held online
-     */
-    var processEditor = function(editorName, html, group, online) {
-        var $form = $(html);
-        var editorsObj = records.loadEditorsMetadata();
-
-        // Add the dom class that will be used in the buttons
-        var editorClass = $('#dtree-form-class-name', $form).text();
-        if (editorClass !== '') {
-            if (editorsObj[group][editorName] === undefined) {
-                editorsObj[group][editorName] = {};
-            }
-
-            editorsObj[group][editorName]['class'] = editorClass;
-
-            // Save the result
-            records.saveEditorsMetadata(editorsObj);
-        }
-    };
-
-    // Add the plugin editor process to the pipeline
-    records.addProcessEditor(processEditor);
-
     var registerOnFinish = function(func) {
         onFinishDtree = func;
     };
