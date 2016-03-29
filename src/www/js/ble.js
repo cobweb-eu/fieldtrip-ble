@@ -41,7 +41,7 @@ define(['records', 'utils', 'file', 'widgets'], function(records, utils, file, w
 
     var pluginRoot = 'plugins/ble/';
 
-    var fieldId = 'fieldcontain-ble-1';
+    var fieldId = 'ble-1';
 
     var inputValue = _.template(
         '<div id="ble-data">' +
